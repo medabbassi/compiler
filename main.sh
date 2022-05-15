@@ -2,3 +2,4 @@
 . ./compiler.sh  
 
 show_usage
+HELP
