@@ -1,6 +1,9 @@
 #!/bin/bash
-. ./compiler.sh  
+. ./compiler.sh
 
 show_usage
-echo "------ \r";
+echo "-----------\r";
+tester show_usage
+echo "-----------\r";
 HELP
+
