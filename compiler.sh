@@ -17,10 +17,18 @@ else
 fi
 }
 
+
+
+
 #onction nommée HELP qui permet d’afficher le help à partir d’n fichier texte 
  HELP(){
     cat ./help.txt;
  }
+ # function pour afficher menu textuelle 
+ Menu(){
+    echo "-----";
+ }
+ # 
 
  
 
