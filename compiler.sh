@@ -7,7 +7,7 @@ show_usage()
 
 }
 
-#tester la presence d'un argument ou affiche un erreur
+#tester la presenceS d'un argument ou affiche un erreur
 tester(){
 if [[ $# -eq 0 ]] ;
 then
@@ -28,7 +28,55 @@ fi
  Menu(){
     echo "-----";
  }
+ # -v afficher le nom des auteeurs et version de code 
+ getUserNameAndCodeVersion(){
+
+
+ }
+
+ #debug 
+ debugCode(){
+     debugResult = `gcc -g $@`;
+    echo $debugResult;
+
+ }
+
+ #Warn 
+ warnCode(){
+     warnResult =`gcc -W $@` ;
+     echo $warnResult;
+ }
+
  # 
+ afficherFile(){
+ FILE=$#
+if [ -f "$FILE" ]; then
+     basename FILE .c;
+     date -r FILE;
+else 
+    echo "$FILE does not exist."
+fi
+
+ }
+
+
+ #clean 
+supprimerFicher(){
+    file =  $1
+    if [ -e "$file"]
+    then 
+    base=$(basename "$file" .c)
+    rm -rf "$base"
+    echo "fichier suprrimer "
+
+}
+
+
+
+
+
+
+
 
  
 
