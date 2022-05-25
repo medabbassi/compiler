@@ -7,15 +7,7 @@ show_usage()
 
 }
 
-#tester la presenceS d'un argument ou affiche un erreur
-tester(){
-if [[ $# -eq 0 ]] ;
-then
-    echo "pas d'argument";
-else
-     echo "argument exist" ;
-fi
-}
+
 
 
 
@@ -29,27 +21,24 @@ fi
     echo "-----";
  }
  # -v afficher le nom des auteeurs et version de code 
- getUserNameAndCodeVersion(){
-
-
- }
+ 
 
  #debug 
  debugCode(){
-     debugResult = `gcc -g $@`;
+     debugResult = `gcc -g $2`;
     echo $debugResult;
 
  }
 
  #Warn 
  warnCode(){
-     warnResult =`gcc -W $@` ;
+     warnResult =`gcc -W $2` ;
      echo $warnResult;
  }
 
  # 
  afficherFile(){
- FILE=$#
+ FILE=$2
 if [ -f "$FILE" ]; then
      basename FILE .c;
      date -r FILE;
@@ -62,13 +51,23 @@ fi
 
  #clean 
 supprimerFicher(){
-    file =  $1
-    if [ -e "$file"]
+    file =  $@
+    echo "-----> this is --> $file"+$file
+    if [ -e $file]
     then 
-    base=$(basename "$file" .c)
-    rm -rf "$base"
+    echo "---------> $file"
+    echo `basename "$@" .c`
+    #rm -rf $base
     echo "fichier suprrimer "
+    fi 
+}
 
+showAuthorsAndVerion(){
+    if [ -e README ]  ; then 
+        echo ` cat README | cut -d'-' -f2 -s`
+        echo `cat README |grep  version`
+    else echo "le fichier readme doesn't exist"
+    fi 
 }
 
 

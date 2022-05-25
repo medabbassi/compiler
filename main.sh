@@ -11,8 +11,15 @@ do
       HELP
       ;;
     -v | --version)
-    
+    showAuthorsAndVerion
       ;;
+    -g)
+        debugCode
+    ;; 
+
+    --clean)
+        supprimerFicher $2
+    ;; 
   # ...
 
   # Special cases
@@ -43,7 +50,7 @@ do
 
   # for testing purposes:
   echo "$1"
-
+  echo "$2"  
   shift
 done
 	
