@@ -8,7 +8,28 @@ show_usage()
 }
 
 
+forTouch() {
+   
+     if [ -f $* ];
+    then 
+      echo `basename $* .c`
+      echo `ls -lrt $* | awk '{print $5 $6 $7 $8}'`
+    else echo "fichier introuvable"    
+    fi 
+}
+menuTextuell(){
+    echo "usage   of compiler.sh "
+    echo "--touch : prend un nom de fichier en c et retour son dernier date de modi et son nom"
+    echo "--clean : supprime le nom d exucutable"
+    echo "--cc: compile c file with gcc "
+    echo "--debug: evoque loption - g  de  c compiler "
+    echo "--warni: evoque loption -w de c compiler "
+    echo "-g : activer le menu graphique"
+    echo "-h : afficher detailed help menu "
+    echo "-v: afficher nom auther et version code"
+    echo "-m: afficher un menuin textuelle"
 
+}
 
 
 
@@ -25,15 +46,15 @@ show_usage()
 
  #debug 
  debugCode(){
-     debugResult = `gcc -g $2`;
-    echo $debugResult;
+
+    echo `gcc -g   $*`
 
  }
 
  #Warn 
  warnCode(){
-     warnResult =`gcc -W $2` ;
-     echo $warnResult;
+    echo `gcc -W   $*`
+
  }
 
  # 
@@ -51,15 +72,26 @@ fi
 
  #clean 
 supprimerFicher(){
-    file =  $@
-    echo "-----> this is --> $file"+$file
-    if [ -e $file]
+  
+    if [ -f $* ];
     then 
-    echo "---------> $file"
-    echo `basename "$@" .c`
-    #rm -rf $base
-    echo "fichier suprrimer "
+        echo "-----> this is --> $*"+$* 
+        rm -rf  echo `basename "$*" .c`
+        rm -rf a.out
+    else echo "fichier introuvable"    
     fi 
+}
+runCfichier(){
+     if [ -f $* ];
+    then 
+
+        gcc -O2  $*
+    else echo "fichier introuvable"    
+    fi 
+}
+
+returnFileName(){
+    echo "--> this is the file name $*"
 }
 
 showAuthorsAndVerion(){

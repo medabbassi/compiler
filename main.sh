@@ -14,12 +14,25 @@ do
     showAuthorsAndVerion
       ;;
     -g)
-        debugCode
+        debugCode $2
     ;; 
 
     --clean)
         supprimerFicher $2
+        #returnFileName $2
     ;; 
+    --cc)
+      runCfichier $2 
+    ;;
+    --warni)
+      warnCode $2
+    ;;
+    --touch)
+      forTouch $2
+    ;;
+    -m)
+    menuTextuell
+    ;;
   # ...
 
   # Special cases
