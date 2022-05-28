@@ -62,8 +62,7 @@ do
   esac
 
   # for testing purposes:
-  echo "$1"
-  echo "$2"  
+   
   shift
 done
 	
