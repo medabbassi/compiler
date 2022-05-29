@@ -61,8 +61,13 @@ do
       ;;
   esac
 
+<<<<<<< HEAD
   
  
+=======
+  # for testing purposes:
+   
+>>>>>>> 85796e86a22e560ae12a804ee797b7c20c675673
   shift
 done
 	
