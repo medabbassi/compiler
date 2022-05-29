@@ -102,6 +102,32 @@ showAuthorsAndVerion(){
     fi 
 }
 
+lancerYad(){
+ action=$(yad --width 500 --file --confirm-overwrite --filename="journalconnexion.txt" --entry --title "Surveiller utilisateur" \
+   --image=gnome-shutdown  --button="gtk-ok:0" --button="gtk-close:1" \
+   --text "Choisi un action:" --entry-text "afficherNombreDeFichier" "archivageHome" "renommeArchive" "returnDonneFichier" "afficherAuteursEtVersion"  "HELP")
+ret=$?
+
+[[ $ret -eq 1 ]] && exit 0
+
+if [[ $ret -eq 2 ]] ; then
+   gdmflexiserver --startnew &
+   exit 0
+fi
+
+case $action in
+   afficherNombreDeFichier*) eval exec ./sauvegarde.sh -n ;;
+   archivageHome*) eval exec ./sauvegarde.sh -a;;
+   renommeArchive*) eval exec ./sauvegarde.sh -r ;; 
+   returnDonneFichier*) eval exec ./sauvegarde.sh -s ;;
+   afficherAuteursEtVersion*) eval exec ./sauvegarde.sh -v ;;
+   HELP*) eval exec ./sauvegarder.sh -h ;;
+  
+   *) exit 1 ;;
+esac
+
+
+}
 
 
 

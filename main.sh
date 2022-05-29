@@ -13,13 +13,13 @@ do
     -v | --version)
     showAuthorsAndVerion
       ;;
-    -g)
+    --debug)
         debugCode $2
     ;; 
 
     --clean)
         supprimerFicher $2
-        #returnFileName $2
+       
     ;; 
     --cc)
       runCfichier $2 
@@ -33,6 +33,8 @@ do
     -m)
     menuTextuell
     ;;
+    -g) lancerYad
+    ;;
   # ...
 
   # Special cases
@@ -40,14 +42,13 @@ do
       break
       ;;
     --*)
-      # error unknown (long) option $1
+          show_usage
       ;;
     -?)
-      # error unknown (short) option $1
+          show_usage
       ;;
 
-  # FUN STUFF HERE:
-  # Split apart combined short options
+  
     -*)
       split=$1
       shift
@@ -55,15 +56,13 @@ do
       continue
       ;;
 
-  # Done with options
     *)
       break
       ;;
   esac
 
-  # for testing purposes:
-  echo "$1"
-  echo "$2"  
+  
+ 
   shift
 done
 	
