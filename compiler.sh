@@ -103,9 +103,14 @@ showAuthorsAndVerion(){
 }
 
 lancerYad(){
- action=$(yad --width 500 --file --confirm-overwrite --filename="journalconnexion.txt" --entry --title "Surveiller utilisateur" \
+ action=$(yad --width 500 --file --confirm-overwrite  --entry --title "Gere fichier C" \
    --image=gnome-shutdown  --button="gtk-ok:0" --button="gtk-close:1" \
-   --text "Choisi un action:" --entry-text "afficherNombreDeFichier" "archivageHome" "renommeArchive" "returnDonneFichier" "afficherAuteursEtVersion"  "HELP")
+   --list \
+   --text \
+    "Choisi un action:" --entry-text "help" "showAuthorsAndVersion" "debugCode" "supprimerFichier" "runCFile"  "warnCode" "forTouch" "show_usage" \
+   --text \
+    "donner le nom de votre fichier:" 
+   )
 ret=$?
 
 [[ $ret -eq 1 ]] && exit 0
@@ -116,12 +121,13 @@ if [[ $ret -eq 2 ]] ; then
 fi
 
 case $action in
-   afficherNombreDeFichier*) eval exec ./sauvegarde.sh -n ;;
-   archivageHome*) eval exec ./sauvegarde.sh -a;;
-   renommeArchive*) eval exec ./sauvegarde.sh -r ;; 
-   returnDonneFichier*) eval exec ./sauvegarde.sh -s ;;
-   afficherAuteursEtVersion*) eval exec ./sauvegarde.sh -v ;;
-   HELP*) eval exec ./sauvegarder.sh -h ;;
+   help*) eval exec ./main.sh -h ;;
+   showAuthorsAndVersion*) eval exec ./main.sh -v;;
+   debugCode*) eval exec ./main.sh --debug  ;; 
+   supprimerFichier*) eval exec ./main.sh --clean ;;
+   runCFile*) eval exec ./main.sh -cc ;;
+   warnCode*) eval exec ./main.sh --warni ;;
+   forTouch*) eval exec ./main.sh --touch ;;
   
    *) exit 1 ;;
 esac
