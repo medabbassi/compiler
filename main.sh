@@ -7,7 +7,6 @@ do
   case $1 in
 
     -h | --help)
-  
       HELP
       ;;
     -v | --version)
@@ -18,8 +17,7 @@ do
     ;; 
 
     --clean)
-        supprimerFicher $2
-       
+        supprimerFicher $2 
     ;; 
     --cc)
       runCfichier $2 
